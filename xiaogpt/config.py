@@ -57,13 +57,15 @@ MI_ASK_SIMULATE_DATA = {
 
 @dataclass
 class Config:
-    hardware: str = "LX06"
+    hardware: str = "LX04"
     account: str = os.getenv("MI_USER", "")
     password: str = os.getenv("MI_PASS", "")
     openai_key: str = os.getenv("OPENAI_API_KEY", "")
     glm_key: str = os.getenv("CHATGLM_KEY", "")
     bard_token: str = os.getenv("BARD_TOKEN", "")
     serpapi_api_key: str = os.getenv("SERPAPI_API_KEY", "")
+    baidu_apikey : str = os.getenv("BAIDU_APIKEY", "")
+    baidu_secret : str = os.getenv("BAIDU_SECRET", "")
     proxy: str | None = None
     mi_did: str = os.getenv("MI_DID", "")
     keyword: Iterable[str] = KEY_WORD
@@ -109,6 +111,12 @@ class Config:
                     "Using GPT api needs openai API key, please google how to"
                 )
 
+        if self.bot in ["baidu"]:
+            if not self.baidu_apikey or not self.baidu_secret:
+                raise Exception(
+                    "Using baidu api needs baid_apikey and baidu_secret."
+                )
+
     @property
     def tts_command(self) -> str:
         return HARDWARE_COMMAND_DICT.get(self.hardware, DEFAULT_COMMAND)[0]
@@ -151,6 +159,8 @@ class Config:
                     key, value = "bot", "bard"
                 elif key == "use_langchain":
                     key, value = "bot", "langchain"
+                elif key == "use_baidu":
+                    key, value = "bot", "baidu"
                 elif key == "enable_edge_tts":
                     key, value = "tts", "edge"
                 if key in cls.__dataclass_fields__:
