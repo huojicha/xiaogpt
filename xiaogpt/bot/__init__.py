@@ -1,21 +1,23 @@
 from __future__ import annotations
 
 from xiaogpt.bot.base_bot import BaseBot
-from xiaogpt.bot.chatgptapi_bot import ChatGPTBot
-from xiaogpt.bot.gpt3_bot import GPT3Bot
-from xiaogpt.bot.newbing_bot import NewBingBot
-from xiaogpt.bot.glm_bot import GLMBot
-from xiaogpt.bot.bard_bot import BardBot
-from xiaogpt.bot.langchain_bot import LangChainBot
+# from xiaogpt.bot.chatgptapi_bot import ChatGPTBot
+# from xiaogpt.bot.gpt3_bot import GPT3Bot
+# from xiaogpt.bot.newbing_bot import NewBingBot
+# from xiaogpt.bot.glm_bot import GLMBot
+# from xiaogpt.bot.bard_bot import BardBot
+# from xiaogpt.bot.langchain_bot import LangChainBot
+from xiaogpt.bot.baidu_bot import BaiduBot
 from xiaogpt.config import Config
 
 BOTS: dict[str, type[BaseBot]] = {
-    "gpt3": GPT3Bot,
-    "newbing": NewBingBot,
-    "chatgptapi": ChatGPTBot,
-    "glm": GLMBot,
-    "bard": BardBot,
-    "langchain": LangChainBot,
+    # "gpt3": GPT3Bot,
+    # "newbing": NewBingBot,
+    # "chatgptapi": ChatGPTBot,
+    # "glm": GLMBot,
+    # "bard": BardBot,
+    # "langchain": LangChainBot,
+    "baidu": BaiduBot,
 }
 
 
@@ -27,11 +29,12 @@ def get_bot(config: Config) -> BaseBot:
 
 
 __all__ = [
-    "GPT3Bot",
-    "ChatGPTBot",
-    "NewBingBot",
-    "GLMBot",
-    "BardBot",
-    "get_bot",
-    "LangChainBot",
+    # "GPT3Bot",
+    # "ChatGPTBot",
+    # "NewBingBot",
+    # "GLMBot",
+    # "BardBot",
+    # "get_bot",
+    # "LangChainBot",
+    "BaiduBot",
 ]
